@@ -30,8 +30,7 @@ public class SavingAccountSJDAOIMPL implements SavingsAccountDAO{
 	@Override
 	public SavingsAccount updateAccount(SavingsAccount account) throws SQLException, ClassNotFoundException {
 		jdbctemplate.update("UPDATE account SET  account_hn = ?,salary =? WHERE account_id = ?", new Object[] 
-				{account.getBankAccount().getAccountHolderName(),account.isSalary(), account.getBankAccount().getAccountNumber() },
-				new SavingsAccountMap());
+				{account.getBankAccount().getAccountHolderName(),account.isSalary(), account.getBankAccount().getAccountNumber() });
 		return null;
 	}
 
