@@ -32,7 +32,7 @@ public class SavingAccountSJDAOIMPL implements SavingsAccountDAO{
 		jdbctemplate.update("UPDATE account SET  account_hn = ?,salary =? WHERE account_id = ?", new Object[] 
 				{account.getBankAccount().getAccountHolderName(),account.isSalary(), account.getBankAccount().getAccountNumber() },
 				new SavingsAccountMap());
-		return account;
+		return null;
 	}
 
 	@Override

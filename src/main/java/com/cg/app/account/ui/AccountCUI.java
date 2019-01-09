@@ -146,13 +146,15 @@ public class AccountCUI {
 		SavingsAccount savingsAccount;
 		try {
 			savingsAccount = savingsAccountService.getAccountById(accountNumber);
-			int choice = scanner.nextInt();
+			
 			System.out.println(
 					"enter 1. update Account holderName \n 2. Update SalaryType \n 3. Update both HolderName and SalaryType ");
+			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
 				System.out.println("Enter name to change account holder name");
 				String accountHolderName = scanner.nextLine();
+				accountHolderName = scanner.nextLine();
 				try {
 					savingsAccount = savingsAccountService.getAccountById(accountNumber);
 					savingsAccount.getBankAccount().setAccountHolderName(accountHolderName);
@@ -175,8 +177,11 @@ public class AccountCUI {
 
 				break;
 			case 3:
-				System.out.println("enter the salary type and accountHolderName");
+				System.out.println("enter the accountHolderName");
 				accountHolderName = scanner.nextLine();
+				accountHolderName = scanner.nextLine();
+				System.out
+				.println("Enter salarytype to change account salarytype");
 				salary = scanner.nextBoolean();
 				try {
 					savingsAccount = savingsAccountService.getAccountById(accountNumber);

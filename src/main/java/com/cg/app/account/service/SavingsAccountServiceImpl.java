@@ -11,7 +11,6 @@ import com.cg.app.account.SavingsAccount;
 import com.cg.app.account.dao.SavingsAccountDAO;
 import com.cg.app.account.factory.AccountFactory;
 import com.cg.app.exception.AccountNotFoundException;
-import com.cg.app.exception.InsufficientFundsException;
 import com.cg.app.exception.InvalidInputException;
 
 @Service
@@ -40,25 +39,16 @@ public class SavingsAccountServiceImpl implements SavingsAccountService {
 		return savingsAccountDAO.getAllSavingsAccount();
 	}
 
-	@Override
 	public void deposit(SavingsAccount account, double amount) throws ClassNotFoundException, SQLException {
-		if (amount > 0) {
 			double currentBalance = account.getBankAccount().getAccountBalance();
 			currentBalance += amount;
 			savingsAccountDAO.updateBalance(account.getBankAccount().getAccountNumber(), currentBalance);
-		}else {
-			throw new InvalidInputException("Invalid Input Amount!");
-		}
 	}
-	@Override
+	
 	public void withdraw(SavingsAccount account, double amount) throws ClassNotFoundException, SQLException {
 		double currentBalance = account.getBankAccount().getAccountBalance();
-		if (amount > 0 && currentBalance >= amount) {
 			currentBalance -= amount;
 			savingsAccountDAO.updateBalance(account.getBankAccount().getAccountNumber(), currentBalance);
-		} else {
-			throw new InsufficientFundsException("Invalid Input or Insufficient Funds!");
-		}
 	}
 
 	@Transactional(rollbackForClassName= {"Throwable"})
